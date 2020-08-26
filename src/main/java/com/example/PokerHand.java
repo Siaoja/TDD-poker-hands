@@ -115,6 +115,21 @@ public class PokerHand {
         int player1PokerType = judgeTypes(player1Pokers);
         int player2PokerType = judgeTypes(player2Pokers);
 
+        if(player1PokerType > player2PokerType)
+            return PokerHandConstant.PLAYER_1_WIN;
+        if(player1PokerType < player2PokerType)
+            return PokerHandConstant.PLAYER_2_WIN;
+
+        boolean isTie = true;
+
+        for(int i = 0; i < player1Pokers.size(); i++){
+            if(player1Pokers.get(i)/10 != player2Pokers.get(i)/10)
+                isTie =false;
+        }
+
+        if(isTie)
+            return PokerHandConstant.TIE;
+
         if(player1PokerType==PokerHandConstant.FOUR_A_KIND || player1PokerType == PokerHandConstant.FULL_HOUSE || player1PokerType == PokerHandConstant.THREE_OF_A_KIND){
             return compareOverTwoOfAKind(player1Pokers,player2Pokers);
         }
