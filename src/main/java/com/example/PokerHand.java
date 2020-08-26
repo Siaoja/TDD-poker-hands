@@ -6,21 +6,43 @@ public class PokerHand {
 
     public int judgeTypes(String input) {
         List<Integer> pokers = formatPoker(input);
-        Set<Integer> decors = new HashSet<>();
 
         pokers.sort(Comparator.comparingInt(Integer::intValue));
 
-        if(pokers.get(pokers.size()-1)/10-pokers.get(0)/10==4){
-            return 5;
+        if(isStraight(pokers)){
+            return PokerHandConstant.STRAIGHT;
         }
 
+        if(isFlush(pokers)){
+            return PokerHandConstant.FLUSH;
+        }
+
+        if(isFourAKind(pokers)){
+            return PokerHandConstant.FOUR_A_KIND;
+        }
+
+
+        return 0;
+    }
+
+    private boolean isFlush(List<Integer> pokers){
+        Set<Integer> decors = new HashSet<>();
         for (int poker : pokers) {
             decors.add(poker % 10);
         }
         if(decors.size() == 1){
-            return 6;
+            return true;
         }
+        return false;
+    }
+    private boolean isStraight(List<Integer> pokers){
+        if(pokers.get(pokers.size()-1)/10-pokers.get(0)/10==4){
+            return true;
+        }
+        return false;
+    }
 
+    private boolean isFourAKind(List<Integer> pokers){
         int countSameNumber = 0;
         for(int poker : pokers){
             if(poker/10 == pokers.get(1)/10){
@@ -28,10 +50,9 @@ public class PokerHand {
             }
         }
         if(countSameNumber == 4){
-            return 8;
+            return true;
         }
-
-        return 0;
+        return false;
     }
 
     private List<Integer> formatPoker(String input) {

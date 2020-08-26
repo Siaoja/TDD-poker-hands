@@ -16,7 +16,7 @@ public class PokerHandTest {
         int type = pokerHand.judgeTypes(input);
 
         //then
-        assertEquals(6, type);
+        assertEquals(PokerHandConstant.FLUSH, type);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class PokerHandTest {
         int type = pokerHand.judgeTypes(input);
 
         //then
-        assertEquals(5, type);
+        assertEquals(PokerHandConstant.STRAIGHT, type);
     }
 
 
@@ -43,6 +43,6 @@ public class PokerHandTest {
         int type = pokerHand.judgeTypes(input);
 
         //then
-        assertEquals(8, type);
+        assertEquals(PokerHandConstant.FOUR_A_KIND, type);
     }
 }
