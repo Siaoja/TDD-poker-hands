@@ -13,7 +13,7 @@ public class PokerHandTest {
         String input="2H 4H 6H 8H TH";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.FLUSH, type);
@@ -26,7 +26,7 @@ public class PokerHandTest {
         String input="2C 3D 4H 5S 6D";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.STRAIGHT, type);
@@ -40,7 +40,7 @@ public class PokerHandTest {
         String input="1C 1D 3H 1S 1H";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.FOUR_A_KIND, type);
@@ -53,7 +53,7 @@ public class PokerHandTest {
         String input="1C 2C 3C 4C 5C";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.STRAIGHT_FLUSH, type);
@@ -66,7 +66,7 @@ public class PokerHandTest {
         String input="2C 2D 4C 2H 4S";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.FULL_HOUSE, type);
@@ -79,7 +79,7 @@ public class PokerHandTest {
         String input="2C 2D 4C 2H 3S";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.THREE_OF_A_KIND, type);
@@ -92,7 +92,7 @@ public class PokerHandTest {
         String input="2C 2D 4C 3H 3S";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.TWO_PAIR, type);
@@ -105,7 +105,7 @@ public class PokerHandTest {
         String input="2C 2D 4C 3H 1S";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.PAIR, type);
@@ -118,7 +118,7 @@ public class PokerHandTest {
         String input="2C 5D 4C 3H 8S";
 
         //when
-        int type = pokerHand.judgeTypes(input);
+        int type = pokerHand.judgeTypes(pokerHand.formatPoker(input));
 
         //then
         assertEquals(PokerHandConstant.HIGH_CARD, type);
@@ -182,4 +182,6 @@ public class PokerHandTest {
         //then
         assertEquals(PokerHandConstant.PLAYER_1_WIN,result );
     }
+
+
 }

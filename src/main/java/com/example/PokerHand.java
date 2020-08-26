@@ -4,10 +4,7 @@ import java.util.*;
 
 public class PokerHand {
 
-    public int judgeTypes(String input) {
-        List<Integer> pokers = formatPoker(input);
-
-        pokers.sort(Comparator.comparingInt(Integer::intValue));
+    public int judgeTypes( List<Integer> pokers) {
 
         if(isStraightFlush(pokers)){
             return PokerHandConstant.STRAIGHT_FLUSH;
@@ -67,7 +64,7 @@ public class PokerHand {
         return pokers.get(pokers.size() - 1) / 10 - pokers.get(0) / 10 == 4;
     }
 
-    private List<Integer> formatPoker(String input) {
+    public List<Integer> formatPoker(String input) {
         String[] pokers = input.split(" ");
         List<Integer> pokerNumbers = new ArrayList<>();
         for (String poker : pokers) {
@@ -107,14 +104,23 @@ public class PokerHand {
             }
             pokerNumbers.add(number);
         }
+        pokerNumbers.sort(Comparator.comparingInt(Integer::intValue));
         return pokerNumbers;
     }
 
     public String compareNumber(String input1, String input2) {
         List<Integer> player1Pokers = formatPoker(input1);
         List<Integer> player2Pokers = formatPoker(input2);
-        player1Pokers.sort(Comparator.comparingInt(Integer::intValue));
-        player2Pokers.sort(Comparator.comparingInt(Integer::intValue));
+
+        int player1PokerType = judgeTypes(player1Pokers);
+        int player2PokerType = judgeTypes(player2Pokers);
+
+
+
+        return compareMaxNumber(player1Pokers, player2Pokers);
+    }
+
+    private String compareMaxNumber(List<Integer> player1Pokers, List<Integer> player2Pokers) {
         for (int i=player1Pokers.size()-1;i>=0;i--){
             if (player1Pokers.get(i)/10>player2Pokers.get(i)/10){
                 return PokerHandConstant.PLAYER_1_WIN;
