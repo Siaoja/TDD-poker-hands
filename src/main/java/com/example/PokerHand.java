@@ -41,7 +41,24 @@ public class PokerHand {
             return PokerHandConstant.PAIR;
         }
 
+        if(isHighCard(pokers)){
+            return PokerHandConstant.HIGH_CARD;
+        }
+
         return 0;
+    }
+
+    private boolean isHighCard(List<Integer> pokers) {
+        Map<Integer, Integer> numberOccurTimes = new HashMap<>();
+        for(Integer poker : pokers){
+            int pokerNumber = poker/10;
+            if (!numberOccurTimes.containsKey(pokerNumber)){
+                numberOccurTimes.put(pokerNumber,1);
+            }else{
+                numberOccurTimes.put(pokerNumber, numberOccurTimes.get(pokerNumber) + 1);
+            }
+        }
+        return numberOccurTimes.size()==5;
     }
 
     private boolean isPair(List<Integer> pokers) {

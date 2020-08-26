@@ -110,4 +110,18 @@ public class PokerHandTest {
         //then
         assertEquals(PokerHandConstant.PAIR, type);
     }
+
+    @Test
+    void should_return_High_Card_when_judge_types_given_2C5D4C3H8S() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="2C 5D 4C 3H 8S";
+
+        //when
+        int type = pokerHand.judgeTypes(input);
+
+        //then
+        assertEquals(PokerHandConstant.HIGH_CARD, type);
+    }
+
 }
