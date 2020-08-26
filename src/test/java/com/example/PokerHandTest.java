@@ -126,11 +126,11 @@ public class PokerHandTest {
 
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C5D4C3H8S_and_2C5D4C3H7S() {
+    void should_return_player1_win_when_compare_number_given_2C5D4C3H8S_and_2H5H4H3S7S() {
         //given
         PokerHand pokerHand = new PokerHand();
         String input1="2C 5D 4C 3H 8S";
-        String input2="2C 5D 4C 3H 7S";
+        String input2="2H 5H 4H 3S 7S";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
@@ -140,11 +140,11 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C5C4C3C8C_and_2C5C4C3C7C() {
+    void should_return_player1_win_when_compare_number_given_2C5C4C3C8C_and_2D5D4D3D7D() {
         //given
         PokerHand pokerHand = new PokerHand();
         String input1="2C 5C 4C 3C 8C";
-        String input2="2C 5C 4C 3C 7C";
+        String input2="2D 5D 4D 3D 7D";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
@@ -184,11 +184,11 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C2C2C2C5D_and_1D1D1D1D6C() {
+    void should_return_player1_win_when_compare_number_given_2C2H2D2S5D_and_1D1H1S1C6C() {
         //given
         PokerHand pokerHand = new PokerHand();
-        String input1="2C 2C 2C 2C 5D";
-        String input2="1D 1D 1D 1D 6C";
+        String input1="2C 2H 2D 2S 5D";
+        String input2="1D 1H 1S 1C 6C";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
@@ -198,11 +198,11 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C2C2C5C5D_and_1D1D1D6D6C() {
+    void should_return_player1_win_when_compare_number_given_2C2D2H5C5D_and_1C1D1H6D6C() {
         //given
         PokerHand pokerHand = new PokerHand();
-        String input1="2C 2C 2C 5C 5D";
-        String input2="1D 1D 1D 6D 6C";
+        String input1="2C 2D 2H 5C 5D";
+        String input2="1C 1D 1H 6D 6C";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
@@ -212,11 +212,11 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C2C2C5C4D_and_1D1D1D6D5C() {
+    void should_return_player1_win_when_compare_number_given_2C2D2H5C4D_and_1H1D1C6D5D() {
         //given
         PokerHand pokerHand = new PokerHand();
-        String input1="2C 2C 2C 5C 4D";
-        String input2="1D 1D 1D 6D 5C";
+        String input1="2C 2D 2H 5C 4D";
+        String input2="1H 1D 1C 6D 5D";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
@@ -240,11 +240,11 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C2D6C5C6D_and_1D1D2H6H6S() {
+    void should_return_player1_win_when_compare_number_given_2C2D6C5C6D_and_1D1C2H6H6S() {
         //given
         PokerHand pokerHand = new PokerHand();
         String input1="2C 2D 6C 5C 6D";
-        String input2="1D 1D 2H 6H 6S";
+        String input2="1D 1C 2H 6H 6S";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
