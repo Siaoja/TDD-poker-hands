@@ -29,8 +29,23 @@ public class PokerHand {
             return PokerHandConstant.FULL_HOUSE;
         }
 
+        if(isThreeOfAKind(pokers)){
+            return PokerHandConstant.THREE_OF_A_KIND;
+        }
 
         return 0;
+    }
+    private boolean isThreeOfAKind(List<Integer> pokers){
+        Map<Integer, Integer> numberOccurTimes = new HashMap<>();
+        for(Integer poker : pokers){
+            int pokerNumber = poker/10;
+            if (!numberOccurTimes.containsKey(pokerNumber)){
+                numberOccurTimes.put(pokerNumber,1);
+            }else{
+                numberOccurTimes.put(pokerNumber, numberOccurTimes.get(pokerNumber) + 1);
+            }
+        }
+        return numberOccurTimes.containsValue(3);
     }
 
     private boolean isFullHouse(List<Integer> pokers) {

@@ -71,4 +71,17 @@ public class PokerHandTest {
         //then
         assertEquals(PokerHandConstant.FULL_HOUSE, type);
     }
+
+    @Test
+    void should_return_Three_Of_A_Kind_when_judge_types_given_2C2D4C2H3S() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="2C 2D 4C 2H 3S";
+
+        //when
+        int type = pokerHand.judgeTypes(input);
+
+        //then
+        assertEquals(PokerHandConstant.THREE_OF_A_KIND, type);
+    }
 }
