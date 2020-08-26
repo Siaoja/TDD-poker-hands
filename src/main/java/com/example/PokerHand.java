@@ -115,9 +115,20 @@ public class PokerHand {
         int player1PokerType = judgeTypes(player1Pokers);
         int player2PokerType = judgeTypes(player2Pokers);
 
-
+        if(player1PokerType==PokerHandConstant.FOUR_A_KIND){
+            return compareFourAKind(player1Pokers,player2Pokers);
+        }
 
         return compareMaxNumber(player1Pokers, player2Pokers);
+    }
+
+    private String compareFourAKind(List<Integer> player1Pokers, List<Integer> player2Pokers) {
+        if(player1Pokers.get(1)>player2Pokers.get(1)){
+            return PokerHandConstant.PLAYER_1_WIN;
+        }else{
+            return PokerHandConstant.PLAYER_2_WIN;
+        }
+
     }
 
     private String compareMaxNumber(List<Integer> player1Pokers, List<Integer> player2Pokers) {
