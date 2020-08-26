@@ -31,10 +31,7 @@ public class PokerHand {
     }
 
     private boolean isStraightFlush(List<Integer> pokers) {
-        if(isFlush(pokers)&&isStraight(pokers)){
-            return true;
-        }
-        return false;
+        return isFlush(pokers) && isStraight(pokers);
     }
 
     private boolean isFlush(List<Integer> pokers){
@@ -42,16 +39,10 @@ public class PokerHand {
         for (int poker : pokers) {
             decors.add(poker % 10);
         }
-        if(decors.size() == 1){
-            return true;
-        }
-        return false;
+        return decors.size() == 1;
     }
     private boolean isStraight(List<Integer> pokers){
-        if(pokers.get(pokers.size()-1)/10-pokers.get(0)/10==4){
-            return true;
-        }
-        return false;
+        return pokers.get(pokers.size() - 1) / 10 - pokers.get(0) / 10 == 4;
     }
 
     private boolean isFourAKind(List<Integer> pokers){
@@ -61,10 +52,7 @@ public class PokerHand {
                 countSameNumber++;
             }
         }
-        if(countSameNumber == 4){
-            return true;
-        }
-        return false;
+        return countSameNumber == 4;
     }
 
     private List<Integer> formatPoker(String input) {
