@@ -25,9 +25,26 @@ public class PokerHand {
             return PokerHandConstant.FOUR_A_KIND;
         }
 
+        if(isFullHouse(pokers)){
+            return PokerHandConstant.FULL_HOUSE;
+        }
 
 
         return 0;
+    }
+
+    private boolean isFullHouse(List<Integer> pokers) {
+        int firstPoker = pokers.get(0)/10;
+        int middlePoker = pokers.get(2)/10;
+        int lastPoker = pokers.get(4)/10;
+
+        if(middlePoker - firstPoker == 0 && pokers.get(3)/10==pokers.get(4)/10){
+            return true;
+        }
+        if(middlePoker - lastPoker == 0 && pokers.get(0)/10==pokers.get(1)/10){
+            return true;
+        }
+        return false;
     }
 
     private boolean isStraightFlush(List<Integer> pokers) {

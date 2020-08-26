@@ -59,4 +59,16 @@ public class PokerHandTest {
         assertEquals(PokerHandConstant.STRAIGHT_FLUSH, type);
     }
 
+    @Test
+    void should_return_Straight_Flush_when_judge_types_given_2C2D4C2H4S() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="2C 2D 4C 2H 4S";
+
+        //when
+        int type = pokerHand.judgeTypes(input);
+
+        //then
+        assertEquals(PokerHandConstant.FULL_HOUSE, type);
+    }
 }
