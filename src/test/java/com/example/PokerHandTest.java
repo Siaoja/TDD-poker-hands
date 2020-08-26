@@ -98,6 +98,16 @@ public class PokerHandTest {
         assertEquals(PokerHandConstant.TWO_PAIR, type);
     }
 
+    @Test
+    void should_return_Pair_when_judge_types_given_2C2D4C3H1S() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="2C 2D 4C 3H 1S";
 
+        //when
+        int type = pokerHand.judgeTypes(input);
 
+        //then
+        assertEquals(PokerHandConstant.PAIR, type);
+    }
 }

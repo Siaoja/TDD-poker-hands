@@ -37,7 +37,24 @@ public class PokerHand {
             return PokerHandConstant.TWO_PAIR;
         }
 
+        if(isPair(pokers)){
+            return PokerHandConstant.PAIR;
+        }
+
         return 0;
+    }
+
+    private boolean isPair(List<Integer> pokers) {
+        Map<Integer, Integer> numberOccurTimes = new HashMap<>();
+        for(Integer poker : pokers){
+            int pokerNumber = poker/10;
+            if (!numberOccurTimes.containsKey(pokerNumber)){
+                numberOccurTimes.put(pokerNumber,1);
+            }else{
+                numberOccurTimes.put(pokerNumber, numberOccurTimes.get(pokerNumber) + 1);
+            }
+        }
+        return numberOccurTimes.containsValue(2)&&numberOccurTimes.size()==4;
     }
 
     private boolean isTwoPair(List<Integer> pokers) {
