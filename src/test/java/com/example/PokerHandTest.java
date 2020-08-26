@@ -10,7 +10,7 @@ public class PokerHandTest {
     void should_return_Flush_when_judge_types_given_2H4H6H8HTH() {
         //given
         PokerHand pokerHand = new PokerHand();
-        String input="2H4H6H8HTH";
+        String input="2H 4H 6H 8H TH";
 
         //when
         int type = pokerHand.judgeTypes(input);
@@ -18,4 +18,18 @@ public class PokerHandTest {
         //then
         assertEquals(6, type);
     }
+
+    @Test
+    void should_return_Straight_when_judge_types_given_2C3D4H5S6D() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="2C 3D 4H 5S 6D";
+
+        //when
+        int type = pokerHand.judgeTypes(input);
+
+        //then
+        assertEquals(5, type);
+    }
+
 }

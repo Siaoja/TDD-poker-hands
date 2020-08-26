@@ -1,15 +1,18 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PokerHand {
 
     public int judgeTypes(String input) {
         List<Integer> pokers = formatPoker(input);
         Set<Integer> decors = new HashSet<>();
+
+        pokers.sort(Comparator.comparingInt(Integer::intValue));
+
+        if(pokers.get(pokers.size()-1)/10-pokers.get(0)/10==4){
+            return 5;
+        }
 
         for (int poker : pokers) {
             decors.add(poker % 10);
