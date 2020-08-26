@@ -9,6 +9,10 @@ public class PokerHand {
 
         pokers.sort(Comparator.comparingInt(Integer::intValue));
 
+        if(isStraightFlush(pokers)){
+            return PokerHandConstant.STRAIGHT_FLUSH;
+        }
+
         if(isStraight(pokers)){
             return PokerHandConstant.STRAIGHT;
         }
@@ -22,7 +26,15 @@ public class PokerHand {
         }
 
 
+
         return 0;
+    }
+
+    private boolean isStraightFlush(List<Integer> pokers) {
+        if(isFlush(pokers)&&isStraight(pokers)){
+            return true;
+        }
+        return false;
     }
 
     private boolean isFlush(List<Integer> pokers){
