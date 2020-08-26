@@ -127,8 +127,58 @@ public class PokerHand {
         if(player1PokerType == PokerHandConstant.PAIR){
             return comparePair(player1Pokers,player2Pokers);
         }
+        if(player1PokerType == PokerHandConstant.TWO_PAIR){
+            return compareTwoPair(player1Pokers,player2Pokers);
+        }
 
         return compareMaxNumber(player1Pokers, player2Pokers);
+    }
+
+    private String compareTwoPair(List<Integer> player1Pokers, List<Integer> player2Pokers) {
+        Set<Integer> player1Set = new HashSet<>();
+        Set<Integer> player2Set = new HashSet<>();
+        int player1Index = -1;
+        int player2Index = -1;
+
+        for(int i = player1Pokers.size()-1; i >=0; i--){
+            int player1SetSize = player1Set.size();
+            int player2SetSize = player2Set.size();
+            player1Set.add(player1Pokers.get(i) / 10);
+            player2Set.add(player2Pokers.get(i) / 10);
+            if(player1SetSize == player1Set.size()){
+                player1Index = i;
+            }
+            if(player2SetSize == player2Set.size()){
+                player2Index = i;
+            }
+        }
+
+        if(player1Pokers.get(player1Index) < player2Pokers.get(player2Index)){
+            return PokerHandConstant.PLAYER_2_WIN;
+        }else if(player1Pokers.get(player1Index) > player2Pokers.get(player2Index)){
+            return PokerHandConstant.PLAYER_1_WIN;
+        }
+
+        for(int i = 0; i < player1Pokers.size(); i++){
+            int player1SetSize = player1Set.size();
+            int player2SetSize = player2Set.size();
+            player1Set.add(player1Pokers.get(i) / 10);
+            player2Set.add(player2Pokers.get(i) / 10);
+            if(player1SetSize == player1Set.size()){
+                player1Index = i;
+            }
+            if(player2SetSize == player2Set.size()){
+                player2Index = i;
+            }
+        }
+        if(player1Pokers.get(player1Index) == player2Pokers.get(player2Index)){
+            return compareMaxNumber(player1Pokers,player2Pokers);
+        }else if(player1Pokers.get(player1Index) < player2Pokers.get(player2Index)){
+            return PokerHandConstant.PLAYER_2_WIN;
+        }else {
+            return PokerHandConstant.PLAYER_1_WIN;
+        }
+
     }
 
     private String comparePair(List<Integer> player1Pokers, List<Integer> player2Pokers) {
