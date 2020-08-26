@@ -121,8 +121,19 @@ public class PokerHand {
         if(player1PokerType == PokerHandConstant.FULL_HOUSE){
             return compareFullHouse(player1Pokers,player2Pokers);
         }
+        if(player1PokerType == PokerHandConstant.THREE_OF_A_KIND){
+            return compareThreeOfAKind(player1Pokers,player2Pokers);
+        }
 
         return compareMaxNumber(player1Pokers, player2Pokers);
+    }
+
+    private String compareThreeOfAKind(List<Integer> player1Pokers, List<Integer> player2Pokers) {
+        if(player1Pokers.get(2)>player2Pokers.get(2)){
+            return PokerHandConstant.PLAYER_1_WIN;
+        }else{
+            return PokerHandConstant.PLAYER_2_WIN;
+        }
     }
 
     private String compareFullHouse(List<Integer> player1Pokers, List<Integer> player2Pokers) {
