@@ -184,11 +184,25 @@ public class PokerHandTest {
     }
 
     @Test
-    void should_return_player1_win_when_compare_number_given_2C2C2C2C6D_and_1D1D1D1D5C() {
+    void should_return_player1_win_when_compare_number_given_2C2C2C2C5D_and_1D1D1D1D6C() {
         //given
         PokerHand pokerHand = new PokerHand();
         String input1="2C 2C 2C 2C 5D";
         String input2="1D 1D 1D 1D 6C";
+
+        //when
+        String result = pokerHand.compareNumber(input1, input2);
+
+        //then
+        assertEquals(PokerHandConstant.PLAYER_1_WIN,result );
+    }
+
+    @Test
+    void should_return_player1_win_when_compare_number_given_2C2C2C5C5D_and_1D1D1D6D6C() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input1="2C 2C 2C 5C 5D";
+        String input2="1D 1D 1D 6D 6C";
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
