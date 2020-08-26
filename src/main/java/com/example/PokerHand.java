@@ -33,8 +33,26 @@ public class PokerHand {
             return PokerHandConstant.THREE_OF_A_KIND;
         }
 
+        if(isTwoPair(pokers)){
+            return PokerHandConstant.TWO_PAIR;
+        }
+
         return 0;
     }
+
+    private boolean isTwoPair(List<Integer> pokers) {
+        Map<Integer, Integer> numberOccurTimes = new HashMap<>();
+        for(Integer poker : pokers){
+            int pokerNumber = poker/10;
+            if (!numberOccurTimes.containsKey(pokerNumber)){
+                numberOccurTimes.put(pokerNumber,1);
+            }else{
+                numberOccurTimes.put(pokerNumber, numberOccurTimes.get(pokerNumber) + 1);
+            }
+        }
+        return numberOccurTimes.containsValue(2)&&numberOccurTimes.size()==3;
+    }
+
     private boolean isThreeOfAKind(List<Integer> pokers){
         Map<Integer, Integer> numberOccurTimes = new HashMap<>();
         for(Integer poker : pokers){
