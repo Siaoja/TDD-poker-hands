@@ -10,5 +10,7 @@ public class PokerHandConstant {
     public static final int TWO_PAIR = 3;
     public static final int PAIR = 2;
     public static final int HIGH_CARD = 1;
-
+    public static final String PLAYER_1_WIN = "player1 win!";
+    public static final String PLAYER_2_WIN = "player2 win!";
+    public static final String TIE = "tie";
 }

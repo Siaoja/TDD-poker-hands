@@ -124,4 +124,19 @@ public class PokerHandTest {
         assertEquals(PokerHandConstant.HIGH_CARD, type);
     }
 
+
+    @Test
+    void should_return_player1_win_when_compare_number_given_2C5D4C3H8S_and_2C5D4C3H7S() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input1="2C 5D 4C 3H 8S";
+        String input2="2C 5D 4C 3H 7S";
+
+        //when
+        String result = pokerHand.compareNumber(input1, input2);
+
+        //then
+        assertEquals(PokerHandConstant.PLAYER_1_WIN,result );
+    }
+
 }

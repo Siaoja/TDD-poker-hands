@@ -110,4 +110,18 @@ public class PokerHand {
         return pokerNumbers;
     }
 
+    public String compareNumber(String input1, String input2) {
+        List<Integer> player1Pokers = formatPoker(input1);
+        List<Integer> player2Pokers = formatPoker(input2);
+        player1Pokers.sort(Comparator.comparingInt(Integer::intValue));
+        player2Pokers.sort(Comparator.comparingInt(Integer::intValue));
+        for (int i=player1Pokers.size()-1;i>=0;i--){
+            if (player1Pokers.get(i)/10>player2Pokers.get(i)/10){
+                return PokerHandConstant.PLAYER_1_WIN;
+            }else if(player1Pokers.get(i)/10<player2Pokers.get(i)/10){
+                return PokerHandConstant.PLAYER_2_WIN;
+            }
+        }
+        return PokerHandConstant.TIE;
+    }
 }
