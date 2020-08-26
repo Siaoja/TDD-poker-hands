@@ -20,6 +20,17 @@ public class PokerHand {
         if(decors.size() == 1){
             return 6;
         }
+
+        int countSameNumber = 0;
+        for(int poker : pokers){
+            if(poker/10 == pokers.get(1)/10){
+                countSameNumber++;
+            }
+        }
+        if(countSameNumber == 4){
+            return 8;
+        }
+
         return 0;
     }
 

@@ -32,4 +32,17 @@ public class PokerHandTest {
         assertEquals(5, type);
     }
 
+
+    @Test
+    void should_return_Four_a_kind_when_judge_types_given_1C1D3H1S1H() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String input="1C 1D 3H 1S 1H";
+
+        //when
+        int type = pokerHand.judgeTypes(input);
+
+        //then
+        assertEquals(8, type);
+    }
 }
