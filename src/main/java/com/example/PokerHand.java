@@ -4,6 +4,42 @@ import java.util.*;
 
 public class PokerHand {
 
+    public String pokerHand(){
+
+        Scanner scanner = new Scanner(System.in);
+        String player1Pokers = scanner.nextLine();
+        String player2Pokers = scanner.nextLine();
+
+        return compareNumber(player1Pokers,player2Pokers);
+
+    }
+
+    public String compareNumber(String input1, String input2) {
+        List<Integer> player1Pokers = formatPoker(input1);
+        List<Integer> player2Pokers = formatPoker(input2);
+
+        int player1PokerType = judgeTypes(player1Pokers);
+        int player2PokerType = judgeTypes(player2Pokers);
+
+        if(player1PokerType > player2PokerType)
+            return PokerHandConstant.PLAYER_1_WIN;
+        if(player1PokerType < player2PokerType)
+            return PokerHandConstant.PLAYER_2_WIN;
+
+        player1Pokers = reSortPoker(player1Pokers);
+        player2Pokers = reSortPoker(player2Pokers);
+
+        for(int i = player1Pokers.size()-1; i>= 0; i-- ){
+            if(player1Pokers.get(i) > player2Pokers.get(i)){
+                return PokerHandConstant.PLAYER_1_WIN;
+            }else if(player1Pokers.get(i) < player2Pokers.get(i)){
+                return PokerHandConstant.PLAYER_2_WIN;
+            }
+        }
+
+        return PokerHandConstant.TIE;
+    }
+
     public int judgeTypes( List<Integer> pokers) {
 
         if(isStraightFlush(pokers)){
@@ -108,32 +144,6 @@ public class PokerHand {
         return pokerNumbers;
     }
 
-    public String compareNumber(String input1, String input2) {
-        List<Integer> player1Pokers = formatPoker(input1);
-        List<Integer> player2Pokers = formatPoker(input2);
-
-        int player1PokerType = judgeTypes(player1Pokers);
-        int player2PokerType = judgeTypes(player2Pokers);
-
-        if(player1PokerType > player2PokerType)
-            return PokerHandConstant.PLAYER_1_WIN;
-        if(player1PokerType < player2PokerType)
-            return PokerHandConstant.PLAYER_2_WIN;
-
-        player1Pokers = reSortPoker(player1Pokers);
-        player2Pokers = reSortPoker(player2Pokers);
-
-        for(int i = player1Pokers.size()-1; i>= 0; i-- ){
-            if(player1Pokers.get(i) > player2Pokers.get(i)){
-                return PokerHandConstant.PLAYER_1_WIN;
-            }else if(player1Pokers.get(i) < player2Pokers.get(i)){
-                return PokerHandConstant.PLAYER_2_WIN;
-            }
-        }
-
-        return PokerHandConstant.TIE;
-    }
-
     private List<Integer> reSortPoker(List<Integer> playerPokers) {
         List<Integer> playerPokersNumber = new ArrayList<>();
         for(int i = 0; i < playerPokers.size(); i++){
@@ -154,5 +164,7 @@ public class PokerHand {
         playerPokersNumber.sort(Comparator.comparingInt(Integer::intValue));
         return playerPokersNumber;
     }
+
+
 
 }

@@ -2,6 +2,8 @@ package com.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PokerHandTest {
@@ -276,6 +278,20 @@ public class PokerHandTest {
 
         //when
         String result = pokerHand.compareNumber(input1, input2);
+
+        //then
+        assertEquals(PokerHandConstant.PLAYER_1_WIN, result);
+    }
+
+    @Test
+    void should_return_player1_win_when_poker_hand_given_1C2C3C4C5C_and_1D3D4D6C8H() {
+        //given
+        PokerHand pokerHand = new PokerHand();
+        String data = "1C 2C 3C 4C 5C\n1D 3D 4D 6C 8H\n";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+
+        //when
+        String result = pokerHand.pokerHand();
 
         //then
         assertEquals(PokerHandConstant.PLAYER_1_WIN, result);
