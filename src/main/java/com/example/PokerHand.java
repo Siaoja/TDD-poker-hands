@@ -48,7 +48,6 @@ public class PokerHand {
         }
     }
 
-
     private boolean isStraightFlush(List<Integer> pokers) {
         return isFlush(pokers) && isStraight(pokers);
     }
@@ -60,6 +59,7 @@ public class PokerHand {
         }
         return decors.size() == 1;
     }
+
     private boolean isStraight(List<Integer> pokers){
         return pokers.get(pokers.size() - 1) / 10 - pokers.get(0) / 10 == 4;
     }
@@ -120,123 +120,39 @@ public class PokerHand {
         if(player1PokerType < player2PokerType)
             return PokerHandConstant.PLAYER_2_WIN;
 
-        boolean isTie = true;
+        player1Pokers = reSortPoker(player1Pokers);
+        player2Pokers = reSortPoker(player2Pokers);
 
-        for(int i = 0; i < player1Pokers.size(); i++){
-            if(player1Pokers.get(i)/10 != player2Pokers.get(i)/10)
-                isTie =false;
-        }
-
-        if(isTie)
-            return PokerHandConstant.TIE;
-
-        if(player1PokerType==PokerHandConstant.FOUR_A_KIND || player1PokerType == PokerHandConstant.FULL_HOUSE || player1PokerType == PokerHandConstant.THREE_OF_A_KIND){
-            return compareOverTwoOfAKind(player1Pokers,player2Pokers);
-        }
-
-        if(player1PokerType == PokerHandConstant.PAIR){
-            return comparePair(player1Pokers,player2Pokers);
-        }
-        if(player1PokerType == PokerHandConstant.TWO_PAIR){
-            return compareTwoPair(player1Pokers,player2Pokers);
-        }
-
-        return compareMaxNumber(player1Pokers, player2Pokers);
-    }
-
-    private String compareTwoPair(List<Integer> player1Pokers, List<Integer> player2Pokers) {
-        Set<Integer> player1Set = new HashSet<>();
-        Set<Integer> player2Set = new HashSet<>();
-        int player1Index = -1;
-        int player2Index = -1;
-
-        for(int i = player1Pokers.size()-1; i >=0; i--){
-            int player1SetSize = player1Set.size();
-            int player2SetSize = player2Set.size();
-            player1Set.add(player1Pokers.get(i) / 10);
-            player2Set.add(player2Pokers.get(i) / 10);
-            if(player1SetSize == player1Set.size()){
-                player1Index = i;
-            }
-            if(player2SetSize == player2Set.size()){
-                player2Index = i;
-            }
-        }
-
-        if(player1Pokers.get(player1Index) < player2Pokers.get(player2Index)){
-            return PokerHandConstant.PLAYER_2_WIN;
-        }else if(player1Pokers.get(player1Index) > player2Pokers.get(player2Index)){
-            return PokerHandConstant.PLAYER_1_WIN;
-        }
-
-        for(int i = 0; i < player1Pokers.size(); i++){
-            int player1SetSize = player1Set.size();
-            int player2SetSize = player2Set.size();
-            player1Set.add(player1Pokers.get(i) / 10);
-            player2Set.add(player2Pokers.get(i) / 10);
-            if(player1SetSize == player1Set.size()){
-                player1Index = i;
-            }
-            if(player2SetSize == player2Set.size()){
-                player2Index = i;
-            }
-        }
-        if(player1Pokers.get(player1Index) == player2Pokers.get(player2Index)){
-            return compareMaxNumber(player1Pokers,player2Pokers);
-        }else if(player1Pokers.get(player1Index) < player2Pokers.get(player2Index)){
-            return PokerHandConstant.PLAYER_2_WIN;
-        }else {
-            return PokerHandConstant.PLAYER_1_WIN;
-        }
-
-    }
-
-    private String comparePair(List<Integer> player1Pokers, List<Integer> player2Pokers) {
-        Set<Integer> player1Set = new HashSet<>();
-        Set<Integer> player2Set = new HashSet<>();
-        int player1Index = -1;
-        int player2Index = -1;
-
-        for(int i = 0; i < player1Pokers.size(); i++){
-            int player1SetSize = player1Set.size();
-            int player2SetSize = player2Set.size();
-            player1Set.add(player1Pokers.get(i) / 10);
-            player2Set.add(player2Pokers.get(i) / 10);
-            if(player1SetSize == player1Set.size()){
-                player1Index = i;
-            }
-            if(player2SetSize == player2Set.size()){
-                player2Index = i;
-            }
-        }
-
-        if(player1Pokers.get(player1Index) == player2Pokers.get(player2Index)){
-            return compareMaxNumber(player1Pokers,player2Pokers);
-        }else if(player1Pokers.get(player1Index) < player2Pokers.get(player2Index)){
-            return PokerHandConstant.PLAYER_2_WIN;
-        }else {
-            return PokerHandConstant.PLAYER_1_WIN;
-        }
-
-    }
-
-    private String compareOverTwoOfAKind(List<Integer> player1Pokers, List<Integer> player2Pokers) {
-        if(player1Pokers.get(2)>player2Pokers.get(2)){
-            return PokerHandConstant.PLAYER_1_WIN;
-        }else{
-            return PokerHandConstant.PLAYER_2_WIN;
-        }
-    }
-
-
-    private String compareMaxNumber(List<Integer> player1Pokers, List<Integer> player2Pokers) {
-        for (int i=player1Pokers.size()-1;i>=0;i--){
-            if (player1Pokers.get(i)/10>player2Pokers.get(i)/10){
+        for(int i = player1Pokers.size()-1; i>= 0; i-- ){
+            if(player1Pokers.get(i) > player2Pokers.get(i)){
                 return PokerHandConstant.PLAYER_1_WIN;
-            }else if(player1Pokers.get(i)/10<player2Pokers.get(i)/10){
+            }else if(player1Pokers.get(i) < player2Pokers.get(i)){
                 return PokerHandConstant.PLAYER_2_WIN;
             }
         }
+
         return PokerHandConstant.TIE;
     }
+
+    private List<Integer> reSortPoker(List<Integer> playerPokers) {
+        List<Integer> playerPokersNumber = new ArrayList<>();
+        for(int i = 0; i < playerPokers.size(); i++){
+            playerPokers.set(i,playerPokers.get(i) / 10);
+        }
+        for (int i = 0; i < playerPokers.size(); i++){
+            int playerPoker = playerPokers.get(i);
+            int index = playerPokers.indexOf(playerPoker);
+
+            if(index != i){
+                int playerPokerNumber = playerPokersNumber.get(playerPokersNumber.size()-1);
+                playerPokersNumber.set(playerPokersNumber.size()-1, playerPokerNumber + 100);
+            }else {
+                playerPokersNumber.add(playerPoker+100);
+            }
+        }
+
+        playerPokersNumber.sort(Comparator.comparingInt(Integer::intValue));
+        return playerPokersNumber;
+    }
+
 }
